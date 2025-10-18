@@ -1,0 +1,17 @@
+# Netlify configuration for Next.js 15 (App Router)
+# Netlify auto-detects Next.js and configures the runtime via OpenNext.
+# Keep this minimal and set env vars in the Dashboard when possible.
+
+[build]
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NEXT_PUBLIC_API_BASE = "https://api.bitechx.com"
+  AUTH_EMAIL = "madhnagar@gmail.com"
+  NEXT_PUBLIC_SITE_NAME = "Product Manager"
+
+# Notes:
+# - Do NOT pin @netlify/plugin-nextjs unless you need a specific adapter version.
+# - The adapter provisions Functions/Edge Functions automatically; no publish dir required.
+# - Prefer setting env vars in Netlify UI (Site settings → Build & deploy → Environment).
