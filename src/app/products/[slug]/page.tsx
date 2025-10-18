@@ -68,11 +68,11 @@ export default function ProductDetailsPage() {
         </div>
       )}
       <div className='flex justify-between items-center gap-6'>
-        <h1 className=" text-2xl font-semibold text-[#0D1821]">{product.name}</h1>
+        <h1 className=" text-2xl font-semibold text-[#0D1821] capitalize">{product.name}</h1>
         <Badge variant="outline" className="text-lg text-primary">${product.price}</Badge>
       </div>
       <div className="flex flex-col gap-3">
-        {product.description && <p className="mt-2 text-gray-700 text-justify">{product.description}</p>}
+        {product.description && <p className="mt-2 normal-case text-gray-700 text-justify">{product.description}</p>}
         {product.category && <p className="mt-2 text-sm text-gray-500">Category: {product.category.name}</p>}
       </div>
 

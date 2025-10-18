@@ -21,11 +21,12 @@ export default function ProductCard({ product, onDelete }: { product: Product; o
           className="object-cover"
           priority={false}
         />
+        {product.category?.name && (
+          <Badge variant="secondary" className="w-fit capitalize text-xs absolute top-3 left-3 shadow-md">{product.category.name}</Badge>
+        )}
       </div>
       <CardContent className='pt-4 flex flex-col gap-1.5 justify-start'>
-        {product.category?.name && (
-          <Badge variant="secondary" className="w-fit capitalize text-xs">{product.category.name}</Badge>
-        )}
+
         <div className='flex flex-row justify-between items-center gap-1.5'>
 
           <h3 className="text-lg font-semibold text-text capitalize">{product.name}</h3>
