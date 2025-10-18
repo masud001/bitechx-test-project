@@ -113,6 +113,7 @@ Tailwind v4 semantic tokens (see `src/app/globals.css` and `colors.md`):
 ## Lighthouse Performance Reports
 These screenshots show Lighthouse performance reports for the app.
 
+## Lighthouse Report for Mobile
 ![Lighthouse Report for Mobile](screenshots/Screenshot-for-mobile.png)
 
 ![Lighthouse Report for Desktop](screenshots/Screenshot-for-desktop.png)
