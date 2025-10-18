@@ -11,6 +11,7 @@ import ConfirmModal from '@/components/ConfirmModal';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { getSafeImageSrc } from '@/lib/images';
+import { Pencil, Trash2 } from 'lucide-react';
 
 export default function ProductDetailsPage() {
   const params = useParams<{ slug: string }>();
@@ -101,10 +102,10 @@ export default function ProductDetailsPage() {
 
       <div className="mt-4 flex gap-3">
         <Button asChild variant="outline" size="sm" className="text-secondary hover:bg-secondary hover:text-white rounded">
-          <Link href={`/products/${product.slug}/edit`}>Edit</Link>
+          <Link href={`/products/${product.slug}/edit`}><Pencil className="mr-2 h-4 w-4" aria-hidden="true" /> Edit</Link>
         </Button>
         <Button variant="outline" size="sm" className="text-accent hover:bg-accent hover:text-white rounded" onClick={handleDelete}>
-          {deleting ? 'Deleting…' : 'Delete'}
+          <Trash2 className="mr-2 h-4 w-4" aria-hidden="true" /> {deleting ? 'Deleting…' : 'Delete'}
         </Button>
       </div>
       <ConfirmModal
@@ -126,6 +127,7 @@ export default function ProductDetailsPage() {
           }
         }}
         onCancel={() => setDialogOpen(false)}
+        confirmIcon={<Trash2 className="h-4 w-4" aria-hidden="true" />}
       />
     </main>
   );

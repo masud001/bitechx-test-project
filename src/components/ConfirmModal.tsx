@@ -10,7 +10,9 @@ export default function ConfirmModal({
   cancelText = 'Cancel',
   loading = false,
   onConfirm,
-  onCancel
+  onCancel,
+  confirmIcon,
+  cancelIcon,
 }: {
   open: boolean;
   title?: string;
@@ -20,6 +22,8 @@ export default function ConfirmModal({
   loading?: boolean;
   onConfirm: () => void;
   onCancel: () => void;
+  confirmIcon?: React.ReactNode;
+  cancelIcon?: React.ReactNode;
 }) {
   return (
     <Dialog
@@ -48,6 +52,7 @@ export default function ConfirmModal({
             disabled={loading}
             aria-disabled={loading}
           >
+            {cancelIcon ? <span className="mr-2">{cancelIcon}</span> : null}
             {cancelText}
           </Button>
           <Button
@@ -57,7 +62,12 @@ export default function ConfirmModal({
             disabled={loading}
             aria-disabled={loading}
           >
-            {loading ? 'Processing…' : confirmText}
+            {loading ? 'Processing…' : (
+              <>
+                {confirmIcon ? <span className="mr-2">{confirmIcon}</span> : null}
+                {confirmText}
+              </>
+            )}
           </Button>
         </DialogFooter>
       </DialogContent>

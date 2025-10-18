@@ -1,11 +1,12 @@
 "use client";
 import Link from 'next/link';
 import Image from 'next/image';
-import type { Product } from '@/features/products/productsApi';
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
+import { Card, CardHeader, CardContent, CardFooter } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { getSafeImageSrc } from '@/lib/images';
+import type { Product } from '@/features/products/productsApi';
+import { Eye, Pencil, Trash2 } from 'lucide-react';
 
 export default function ProductCard({ product, onDelete }: { product: Product; onDelete?: (id: string) => void }) {
   const { src: imageSrc, isPlaceholder } = getSafeImageSrc(product.images?.[0]);
@@ -39,13 +40,15 @@ export default function ProductCard({ product, onDelete }: { product: Product; o
       </CardContent>
       <CardFooter className=" mt-auto gap-2 flex w-full justify-between items-center">
         <Button asChild variant="outline" className='text-primary rounded-md w-full hover:bg-primary hover:text-white'>
-          <Link href={`/products/${product.slug}`}>View</Link>
+          <Link href={`/products/${product.slug}`}><Eye className="mr-2 h-4 w-4" aria-hidden="true" /> View</Link>
         </Button>
         <Button asChild variant="outline" className="text-secondary hover:bg-secondary hover:text-white rounded-md w-full">
-          <Link href={`/products/${product.slug}/edit`}>Edit</Link>
+          <Link href={`/products/${product.slug}/edit`}><Pencil className="mr-2 h-4 w-4" aria-hidden="true" /> Edit</Link>
         </Button>
         {onDelete && (
-          <Button variant="outline" className="text-accent cursor-pointer hover:bg-accent hover:text-white rounded-md w-full" onClick={() => onDelete(product.id)}>Delete</Button>
+          <Button variant="outline" className="text-accent cursor-pointer hover:bg-accent hover:text-white rounded-md w-full" onClick={() => onDelete(product.id)}>
+            <Trash2 className="mr-2 h-4 w-4" aria-hidden="true" /> Delete
+          </Button>
         )}
       </CardFooter>
     </Card>

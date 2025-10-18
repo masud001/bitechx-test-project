@@ -6,12 +6,14 @@ import { useGetCategoriesQuery } from '@/features/categories/categoriesApi';
 import ProductCard from '@/components/ProductCard';
 import Pagination from '@/components/Pagination';
 import Skeleton from '@/components/ui/Skeleton';
+import { Button } from "@/components/ui/button";
 import Link from 'next/link';
 import { toast } from 'sonner';
 import ConfirmModal from '@/components/ConfirmModal';
 import { Input } from '@/components/ui/input';
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
+import { Plus } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
 
 export default function ProductsPage() {
   const dispatch = useAppDispatch();
@@ -117,7 +119,7 @@ export default function ProductsPage() {
           </div>
         </div>
         <Button variant="outline" asChild className="rounded shadow-sm cursor-pointer hover:bg-primary/90">
-          <Link href="/products/create">Create</Link>
+          <Link href="/products/create"><Plus className="mr-2 h-4 w-4" aria-hidden="true" /> Create</Link>
         </Button>
       </div>
 
@@ -166,6 +168,7 @@ export default function ProductsPage() {
         loading={deleting}
         onConfirm={confirmDelete}
         onCancel={() => { setDialogOpen(false); setConfirmId(null); }}
+        confirmIcon={<Trash2 className="h-4 w-4" aria-hidden="true" />}
       />
     </main>
   );
