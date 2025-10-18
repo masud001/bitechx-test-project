@@ -23,10 +23,15 @@ export default function ProductCard({ product, onDelete }: { product: Product; o
         />
       </div>
       <CardContent className='pt-4 flex flex-col gap-1.5 justify-start'>
+        {product.category?.name && (
+          <Badge variant="secondary" className="w-fit capitalize text-xs">{product.category.name}</Badge>
+        )}
         <div className='flex flex-row justify-between items-center gap-1.5'>
+
           <h3 className="text-lg font-semibold text-text capitalize">{product.name}</h3>
           <Badge variant="outline" className="text-lg text-primary">${product.price}</Badge>
         </div>
+
         {product.description && (
           <p className="mt-2 text-sm text-text/70 line-clamp-2">{product.description}</p>
         )}
