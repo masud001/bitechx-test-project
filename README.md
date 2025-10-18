@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Product Management App (Next.js)
 
-## Getting Started
+A Next.js 15 app for managing products with authentication, CRUD, search, pagination, and category filtering. Built with Redux Toolkit, RTK Query, Tailwind CSS, and react-hot-toast.
 
-First, run the development server:
+## Tech Stack
+- Next.js 15 (App Router)
+- TypeScript
+- Redux Toolkit + RTK Query
+- Tailwind CSS
+- react-hot-toast
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Prerequisites
+- Node.js 18+
+- npm (or yarn/pnpm/bun)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Setup
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Configure environment variables in `.env.local`:
+   ```env
+   NEXT_PUBLIC_API_BASE=http://localhost:8000
+   AUTH_EMAIL=demo@example.com
+   ```
+   - Point to your backend API base URL.
+   - `AUTH_EMAIL` is optional and pre-fills the login form email input.
+   - Authorization headers are automatically set from the Redux auth token.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Development server:
+   ```bash
+   npm run dev
+   # to choose a port
+   npm run dev -- -p 3002
+   ```
+   - App defaults to `http://localhost:3000`; examples above show using `3002`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Features
+- Authentication: Login page with client-side validation and Redux auth state.
+- Products: List, view, create, edit, delete.
+- Search: Debounced search across product names/descriptions.
+- Pagination: Offset/limit controls with reset behavior on changes.
+- Category Filter: Filter products by category on the list page.
+- Error Handling: Route-level error boundary under `/products`.
+- Loading UX: Skeleton loaders for list and details.
+- Performance: `next/image` used for images.
 
-## Learn More
+## Notes
+- External images allowed via Next config:
+  - `i.imgur.com`, `laravelpoint.com`
+- Lint and type checks:
+  ```bash
+  npm run lint
+  npm run typecheck
+  ```
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deploy
+Refer to the Next.js deployment docs for hosting on Vercel or other platforms.
