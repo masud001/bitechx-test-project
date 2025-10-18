@@ -227,3 +227,60 @@ h1, h2, h3, h4, h5, h6 {
     @apply bg-background text-foreground;
   }
 }
+
+/* ---------------------------------------
+   🔔 Sonner Toast Theming (Brand Palette)
+---------------------------------------- */
+[data-sonner-toaster][data-sonner-theme='light'] {
+  /* Default */
+  --normal-bg: var(--color-anti-flash-white);
+  --normal-border: #D9DEE3;
+  --normal-text: var(--color-rich-black);
+
+  /* Success (Hooker's Green) */
+  --success-bg: #E7F1EC; /* light tint of #4E6E5D */
+  --success-border: #CFE4D9;
+  --success-text: #2F4F3C;
+
+  /* Info (Lion – warm neutral) */
+  --info-bg: #F5EFE9; /* light tint of #AD8A64 */
+  --info-border: #E7D8C8;
+  --info-text: #7A5D3F;
+
+  /* Warning (Lion – stronger tint) */
+  --warning-bg: #F3E5D6;
+  --warning-border: #E2C6A6;
+  --warning-text: #6E4F2E;
+
+  /* Error (Chestnut) */
+  --error-bg: #F6EAE8; /* light tint of #A44A3F */
+  --error-border: #E2B7B1;
+  --error-text: #7B2E27;
+}
+
+[data-sonner-toaster][data-sonner-theme='dark'] {
+  /* Default */
+  --normal-bg: var(--color-rich-black);
+  --normal-border: #1A2230;
+  --normal-text: var(--color-anti-flash-white);
+
+  /* Success (deep green) */
+  --success-bg: #0F1A15;
+  --success-border: #153023;
+  --success-text: #9FD7B5;
+
+  /* Info (deep lion) */
+  --info-bg: #1E1A16;
+  --info-border: #33281F;
+  --info-text: #E8D1B8;
+
+  /* Warning (muted chestnut) */
+  --warning-bg: #2A1D19;
+  --warning-border: #3A2621;
+  --warning-text: #E8B5AC;
+
+  /* Error (chestnut deep) */
+  --error-bg: #2D1412;
+  --error-border: #4A1F1A;
+  --error-text: #F0C4BE;
+}

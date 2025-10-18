@@ -116,7 +116,7 @@ export default function ProductsPage() {
             </Select>
           </div>
         </div>
-        <Button asChild className="rounded">
+        <Button variant="outline" asChild className="rounded shadow-sm cursor-pointer hover:bg-primary/90">
           <Link href="/products/create">Create</Link>
         </Button>
       </div>

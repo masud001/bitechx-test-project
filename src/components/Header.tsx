@@ -42,7 +42,7 @@ export default function Header() {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 {token ? (
-                  <button onClick={handleLogout} className="rounded-md px-3 py-2 text-sm text-accent hover:bg-accent hover:text-white">Logout</button>
+                  <button onClick={handleLogout} className="rounded-md px-3 py-1.5 text-sm text-accent hover:bg-accent hover:text-white cursor-pointer">Logout</button>
                 ) : (
                   <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
                     <Link href="/login">Login</Link>

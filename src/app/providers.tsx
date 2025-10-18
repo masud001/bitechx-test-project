@@ -28,7 +28,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       <AuthBootstrap />
       <Header />
       {children}
-      <Toaster position="top-right" />
+      <Toaster position="top-right" richColors />
     </Provider>
   );
 }

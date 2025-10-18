@@ -65,7 +65,7 @@ export default function LoginPage() {
                   <FormItem className='space-y-1.5'>
                     <FormLabel className='text-sm font-medium'>Email</FormLabel>
                     <FormControl className='w-full pt-1'>
-                      <Input className="w-full placeholder:text-muted-foreground/55" type="email" placeholder="you@example.com" {...field} />
+                      <Input className="w-full shadow-sm placeholder:text-muted-foreground/55" type="email" placeholder="you@example.com" {...field} />
                     </FormControl>
                     <FormMessage className='text-xs text-destructive' />
                   </FormItem>
@@ -73,8 +73,9 @@ export default function LoginPage() {
               />
               <CardFooter className="p-0">
                 <Button
+                  variant="outline"
                   type="submit"
-                  className="w-full rounded cursor-pointer"
+                  className="w-full shadow-sm rounded cursor-pointer hover:bg-primary/90"
                   disabled={status === 'loading'}
                 >
                   {status === 'loading' ? 'Logging in…' : 'Login'}
