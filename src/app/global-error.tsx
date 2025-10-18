@@ -15,7 +15,7 @@ export default function GlobalError({
   }, [error]);
 
   return (
-    <html lang="en">
+    <html lang="en" data-theme="light">
       <body className="mx-auto max-w-2xl px-4 py-8">
         <h2 className="text-2xl font-semibold mb-3 text-[#0D1821]">Something went wrong</h2>
         <p className="mb-4 text-sm text-gray-700">An unexpected error occurred while rendering this page.</p>

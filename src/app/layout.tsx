@@ -82,11 +82,11 @@ export default async function RootLayout({
   const cookieStore = await cookies();
   const themeCookie = cookieStore.get('theme')?.value as 'light' | 'dark' | undefined;
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`} suppressHydrationWarning data-theme={themeCookie}>
+    <html lang="en" className={`${inter.variable} ${playfair.variable}`} suppressHydrationWarning data-theme={themeCookie ?? 'light'}>
       <head>
         {/* Pre-hydration theme to avoid flash of incorrect theme */}
         <script dangerouslySetInnerHTML={{
-          __html: `(() => { try { var t = localStorage.getItem('theme'); if (t) { document.documentElement.setAttribute('data-theme', t); } } catch(e){} })();`
+          __html: `(() => { try { var t = localStorage.getItem('theme'); document.documentElement.setAttribute('data-theme', t ? t : 'light'); } catch(e){} })();`
         }} />
         {/* Performance hints for external resources */}
         <link rel="dns-prefetch" href="https://api.bitechx.com" />
