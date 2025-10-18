@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Controller, FormProvider, useFormContext } from "react-hook-form";
-import type { FieldValues, FormProviderProps } from "react-hook-form";
+import type { FieldValues, FormProviderProps, Control, ControllerRenderProps, ControllerFieldState, UseFormStateReturn, Path } from "react-hook-form";
 import { cn } from "@/lib/utils";
 
 // Form: wrapper around react-hook-form's FormProvider (generic-aware)
-export type FormProps<TFieldValues extends FieldValues = FieldValues, TContext = any> = FormProviderProps<TFieldValues, TContext>;
-export function Form<TFieldValues extends FieldValues = FieldValues, TContext = any>(
+export type FormProps<TFieldValues extends FieldValues = FieldValues, TContext = unknown> = FormProviderProps<TFieldValues, TContext>;
+export function Form<TFieldValues extends FieldValues = FieldValues, TContext = unknown>(
   props: FormProps<TFieldValues, TContext>
 ) {
   return <FormProvider {...props} />;
@@ -23,15 +23,15 @@ function useFormFieldContext() {
 }
 
 // FormField bridges RHF Controller with our UI structure
-export interface BaseFormFieldProps<TFieldValues> {
-  control?: any;
-  name: any;
-  render: (field: { field: any; fieldState: any; formState: any }) => React.ReactNode;
+export interface BaseFormFieldProps<TFieldValues extends FieldValues> {
+  control?: Control<TFieldValues>;
+  name: Path<TFieldValues>;
+  render: (ctx: { field: ControllerRenderProps<TFieldValues, Path<TFieldValues>>; fieldState: ControllerFieldState; formState: UseFormStateReturn<TFieldValues> }) => React.ReactNode;
 }
 
-export function FormField<TFieldValues = any>(props: BaseFormFieldProps<TFieldValues>) {
-  const { control, name, render } = props as any;
-  const form = useFormContext();
+export function FormField<TFieldValues extends FieldValues = FieldValues>(props: BaseFormFieldProps<TFieldValues>) {
+  const { control, name, render } = props;
+  const form = useFormContext<TFieldValues>();
   const resolvedControl = control ?? form.control;
 
   return (
@@ -39,7 +39,7 @@ export function FormField<TFieldValues = any>(props: BaseFormFieldProps<TFieldVa
       control={resolvedControl}
       name={name}
       render={(ctx) => (
-        <FormFieldContext.Provider value={{ name }}>
+        <FormFieldContext.Provider value={{ name: String(name) }}>
           {render(ctx)}
         </FormFieldContext.Provider>
       )}
@@ -93,7 +93,7 @@ export const FormMessage = React.forwardRef<HTMLParagraphElement, React.HTMLAttr
       formState: { errors },
     } = useFormContext();
     const { name } = useFormFieldContext();
-    const message = (errors as any)?.[name]?.message as string | undefined;
+    const message = (errors as Record<string, { message?: string }>)[name]?.message as string | undefined;
 
     if (!message && !children) return null;
 

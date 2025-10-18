@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useMemo, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { useAppDispatch } from '@/store/hooks';
 import { useDeleteProductMutation, useGetProductsQuery, useSearchProductsQuery, productsApi } from '@/features/products/productsApi';
 import { useGetCategoriesQuery } from '@/features/categories/categoriesApi';
 import ProductCard from '@/components/ProductCard';
@@ -15,9 +14,7 @@ import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 
 export default function ProductsPage() {
-  const router = useRouter();
   const dispatch = useAppDispatch();
-  const token = useAppSelector((s) => s.auth.token);
   const [query, setQuery] = useState('');
   const [debouncedQuery, setDebouncedQuery] = useState('');
   const [page, setPage] = useState(1);

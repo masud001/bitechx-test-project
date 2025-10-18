@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { logout } from '@/features/auth/authSlice';
 import { useRouter } from 'next/navigation';
-import ThemeToggle from '@/components/ThemeToggle';
 
 export default function Header() {
   const router = useRouter();
@@ -30,7 +29,6 @@ export default function Header() {
           ) : (
             <Link href="/login" className="text-sm text-primary hover:underline cursor-pointer">Login</Link>
           )}
-          {/* <ThemeToggle /> */}
         </nav>
       </div>
     </header>
