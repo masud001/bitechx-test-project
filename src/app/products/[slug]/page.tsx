@@ -1,6 +1,7 @@
 "use client";
 import Link from 'next/link';
 import Image from 'next/image';
+import Script from 'next/script';
 import { useParams, useRouter } from 'next/navigation';
 import { useDeleteProductMutation, useGetProductBySlugQuery } from '@/features/products/productsApi';
 import { toast } from 'sonner';
@@ -53,8 +54,28 @@ export default function ProductDetailsPage() {
   // Use shared helper to sanitize and guard the image URL
   const { src: imageSrc, isPlaceholder } = getSafeImageSrc(product.images?.[0]);
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? '';
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.description ?? undefined,
+    image: imageSrc ? [imageSrc] : undefined,
+    sku: product.slug,
+    category: product.category?.name,
+    offers: {
+      "@type": "Offer",
+      price: product.price,
+      priceCurrency: "USD",
+      url: siteUrl ? `${siteUrl}/products/${product.slug}` : undefined,
+      availability: "https://schema.org/InStock",
+    },
+    url: siteUrl ? `${siteUrl}/products/${product.slug}` : undefined,
+  };
+
   return (
     <main className="mx-auto max-w-3xl px-4 py-6 flex flex-col gap-6">
+      <Script id="product-jsonld" type="application/ld+json" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {product.images?.[0] && (
         <div className="relative w-full h-60">
           <Image
