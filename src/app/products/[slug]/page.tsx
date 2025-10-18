@@ -47,7 +47,7 @@ export default function ProductDetailsPage() {
   );
   if (isError || !product) return (
     <main className="mx-auto max-w-3xl px-4 py-6">
-      <div className="text-sm text-[#A44A3F]">Error loading product. <button className="underline" onClick={() => refetch()}>Retry</button></div>
+      <div className="text-sm text-[#A44A3F]">Error loading product. <button className="underline hover:underline-offset-2 transition-colors cursor-pointer" onClick={() => refetch()}>Retry</button></div>
     </main>
   );
 
@@ -76,25 +76,27 @@ export default function ProductDetailsPage() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-6 flex flex-col gap-6">
       <Script id="product-jsonld" type="application/ld+json" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      {product.images?.[0] && (
-        <div className="relative w-full h-60">
-          <Image
-            src={imageSrc}
-            alt={isPlaceholder ? `${product.name} placeholder` : product.name}
-            fill
-            sizes="100vw"
-            className="object-cover rounded"
-            priority={true}
-          />
-        </div>
-      )}
+      <div className="relative w-full h-60">
+        <Image
+          src={imageSrc}
+          alt={isPlaceholder ? `${product.name} placeholder` : product.name}
+          fill
+          sizes="100vw"
+          className="object-cover rounded"
+          priority={!isPlaceholder}
+        />
+      </div>
       <div className='flex justify-between items-center gap-6'>
         <h1 className=" text-2xl font-semibold text-[#0D1821] capitalize">{product.name}</h1>
         <Badge variant="outline" className="text-lg text-primary">${product.price}</Badge>
       </div>
       <div className="flex flex-col gap-3">
         {product.description && <p className="mt-2 normal-case text-gray-700 text-justify">{product.description}</p>}
-        {product.category && <p className="mt-2 text-sm text-gray-500">Category: {product.category.name}</p>}
+        <div className="flex items-center gap-2 justify-start mt-3">
+          <p className=" text-sm text-text/70">Category: </p>
+          {product.category && (
+            <Badge variant="secondary" className="w-fit capitalize text-xs shadow">{product.category.name}</Badge>
+          )}</div>
       </div>
 
       <div className="mt-4 flex gap-3">

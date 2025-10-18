@@ -1,12 +1,12 @@
 import type { Metadata, ResolvingMetadata } from "next";
 
-type Props = { params: { slug: string } };
+type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata(
   { params }: Props,
   _parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const slug = params.slug;
+  const { slug } = await params;
   const prettyName = slug.replace(/-/g, " ");
   return {
     title: `${prettyName} — Product`,

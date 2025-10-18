@@ -22,7 +22,7 @@ export default function ProductCard({ product, onDelete }: { product: Product; o
           priority={false}
         />
         {product.category?.name && (
-          <Badge variant="secondary" className="w-fit capitalize text-xs absolute top-3 left-3 shadow-md">{product.category.name}</Badge>
+          <Badge variant="secondary" className="w-fit capitalize text-xs absolute top-3 left-3 shadow">{product.category.name}</Badge>
         )}
       </div>
       <CardContent className='pt-4 flex flex-col gap-1.5 justify-start'>

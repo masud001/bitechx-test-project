@@ -3,6 +3,7 @@ import Providers from "./providers";
 import { Inter, Playfair_Display } from "next/font/google";
 import { cookies } from "next/headers";
 import type { Metadata } from "next";
+import type { Viewport } from "next";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -64,6 +65,9 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
+};
+
+export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#EFF1F3" },
     { media: "(prefers-color-scheme: dark)", color: "#0D1821" },
@@ -86,11 +90,11 @@ export default async function RootLayout({
         }} />
         {/* Performance hints for external resources */}
         <link rel="dns-prefetch" href="https://api.bitechx.com" />
-        <link rel="preconnect" href="https://api.bitechx.com" crossOrigin="" />
+        <link rel="preconnect" href="https://api.bitechx.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://i.imgur.com" />
-        <link rel="preconnect" href="https://i.imgur.com" crossOrigin="" />
+        <link rel="preconnect" href="https://i.imgur.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://laravelpoint.com" />
-        <link rel="preconnect" href="https://laravelpoint.com" crossOrigin="" />
+        <link rel="preconnect" href="https://laravelpoint.com" crossOrigin="anonymous" />
       </head>
       <body>
         <Providers>
